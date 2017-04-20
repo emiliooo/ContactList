@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl" ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row" ng-controller="GreetingController">
+           <div>
+               <p>Contact List</p>
+           </div>
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th>Firstname</th>
+                        <th>Email</th>
+                        <th>Number</th>
+                        <th>Company</th>
+                        <th>Action</th>
+                        <th>&nbsp  </th>
+                        <th>Search</th>
+                    </tr>
+                </thead>
+                <tbody >
+                <tr>
+
+                    <td><input required="required" name="uName" class="form-control" ng-model="person.name"></td>
+                    <td><input class="form-control" ng-model="person.email"></td>
+                    <td><input class="form-control" ng-model="person.number"></td>
+                    <td><input class="form-control" ng-model="person.company"></td>
+                    <td><button class="btn btn-primary" ng-click="addContact()">Add Contact</button></td>
+                    <td>&nbsp </td>
+                    <td><input class="form-control" ng-model="filterBy.company" placeholder="search by company"></td>
+
+
+                </tr>
+                    <tr ng-repeat="person in persons | filter:filterBy">
+                        <td>
+                           {{ person.name }}
+                        </td>
+                        <td>
+                            {{person.email}}
+                        </td>
+                        <td>
+                            {{person.number}}
+                        </td>
+                        <td>
+                            {{person.company}}
+                        </td>
+                        <td><button class="btn btn-danger" ng-click="remove(person._id)">Remove </button></td>
+                        <td> <button class="btn btn-warning" ng-click="edit(person._id)"> Edit </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="Controllers/controller.js"> </script>
+</body>
+</html>
